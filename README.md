@@ -37,9 +37,8 @@ The masks and region annotations used in training and evaluation were manually c
 
 ### Related Publication
 
-Le Hou et al. (2020) provide the full dataset and detailed annotations in their paper:
-Dataset of segmented nuclei in hematoxylin and eosin stained histopathology images of ten cancer types, Scientific Data, 7:185.
-https://www.nature.com/articles/s41597-020-0528-1
+This dataset was originally published by Le Hou et al. in *Scientific Data* (2020).  
+For more information, see: https://www.nature.com/articles/s41597-020-0528-1
 
 Note: This repository only utilizes a subset of the full dataset. 
 
