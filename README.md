@@ -27,5 +27,24 @@ Class 1: Necrotic tissue
 
 ✅ Evaluation metrics: R² score and global pixel accuracy
 
+## 📂 Dataset
+
+The dataset used in this project was obtained from **The Cancer Genome Atlas (TCGA)**. The **Hematoxylin and Eosin (H&E) stained whole-slide images** were annotated and labeled by researchers from the **Stony Brook University Biomedical Informatics Department**.
+
+### 🏷️ Labels
+
+The masks and region annotations used in training and evaluation were manually curated and verified by the expert team at Stony Brook.
+
+### Related Publication
+
+Le Hou et al. (2020) provide the full dataset and detailed annotations in their paper:
+Dataset of segmented nuclei in hematoxylin and eosin stained histopathology images of ten cancer types, Scientific Data, 7:185.
+https://www.nature.com/articles/s41597-020-0528-1
+
+Note: This repository only utilizes a subset of the full dataset. 
+
+### 📄 License & Usage
+
+Please ensure you follow the data usage guidelines as defined by TCGA and the labeling institution. 
 
 
