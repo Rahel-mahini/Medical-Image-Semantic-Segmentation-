@@ -24,7 +24,7 @@ import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import all_gather_object
 
-# --- Dataset Loader Using data.txt ---
+# Dataset Loader Using label.txt 
 class SegmentationDataset(Dataset):
     def __init__(self, root_dir, data_txt, transform=None):
         self.root_dir = root_dir
@@ -43,7 +43,7 @@ class SegmentationDataset(Dataset):
             image, mask = self.transform(image, mask)
         return image, mask, os.path.basename(mask_name)  # keep filename for prediction
 
-# --- Data Augmentation and Preprocessing ---
+# Data Augmentation and Preprocessing 
 class RandomTransform:
     def __init__(self, size=(256, 256)):
         self.size = size
@@ -66,7 +66,7 @@ class RandomTransform:
 
         return image, mask
 
-# --- Metrics ---
+# Metrics 
 def pixel_accuracy(output, mask):
     preds = (torch.sigmoid(output) > 0.5).long()
     correct = (preds == mask).float()
@@ -107,7 +107,7 @@ def train_model(model, train_loader, val_loader, optimizer, criterion, device, e
         if dist.get_rank() == 0:
             print(f"Epoch {epoch+1} Validation Loss: {val_loss:.4f}, R2: {val_r2:.4f}, Pixel Acc: {val_acc:.4f}")
 
-# --- Validation ---
+# Validation 
 def validate_model(model, val_loader, criterion, device):
     model.eval()
     running_loss = 0.0
@@ -125,7 +125,7 @@ def validate_model(model, val_loader, criterion, device):
             running_r2 / len(val_loader),
             running_acc / len(val_loader))
 
-# --- Save Predictions ---
+# Save Predictions
 def save_predictions(model, loader, device, out_dir="predictions"):
     model.eval()
 
@@ -162,7 +162,7 @@ def save_predictions(model, loader, device, out_dir="predictions"):
             Image.fromarray(pred).save(os.path.join(out_dir, filename))
 
 
-# --- Optuna Objective ---
+# Optuna Objective
 def objective(trial):
     lr = trial.suggest_float("lr", 1e-5, 1e-3, log=True)
     batch_size = trial.suggest_categorical("batch_size", [4, 8, 16])
