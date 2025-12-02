@@ -2,7 +2,7 @@
 """
 Created on Thu Jul 31 16:28:59 2025
 
-@author: RASULEVLAB
+@author: Rahil
 
 """
 import os
@@ -168,7 +168,7 @@ def objective(trial):
     batch_size = trial.suggest_categorical("batch_size", [4, 8, 16])
 
     transform = RandomTransform(size=(256, 256))
-    dataset = SegmentationDataset(root_dir="/mmfs1/projects/bakhtiyor.rasulev/Rahil/Deep_Learning/CNN/luad_batch_1",
+    dataset = SegmentationDataset(root_dir="luad_batch_1",
                                   data_txt="label.txt",
                                   transform=transform)
 
@@ -218,7 +218,7 @@ def main():
     best_params = obj_list[0]
 
     transform = RandomTransform(size=(256, 256))
-    dataset = SegmentationDataset(root_dir="/mmfs1/projects/bakhtiyor.rasulev/Rahil/Deep_Learning/CNN/luad_batch_1",
+    dataset = SegmentationDataset(root_dir="luad_batch_1",
                                   data_txt="label.txt",
                                   transform=transform)
 
@@ -234,7 +234,7 @@ def main():
     train_model(model, loader, loader, optimizer, criterion, device, epochs=10)
 
     # Save predictions on validation set
-    val_dataset = SegmentationDataset(root_dir="/mmfs1/projects/bakhtiyor.rasulev/Rahil/Deep_Learning/CNN/luad_validation_1",
+    val_dataset = SegmentationDataset(root_dir="luad_validation_1",
                                      data_txt="label.txt",
                                      transform=transform)
     val_sampler = DistributedSampler(val_dataset, shuffle=False)
